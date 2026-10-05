@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="PlayerClass" format=3 uid="uid://iekvu611xiov"]
+
+[ext_resource type="Script" uid="uid://wyp6napac1ba" path="res://scripts/player/player_class.gd" id="1_f08cx"]
+
+[resource]
+script = ExtResource("1_f08cx")
+player_class_name = "FIGHTER"
+base_attack_speed = 1.0
+base_max_health = 10.0
+metadata/_custom_type_script = "uid://wyp6napac1ba"
