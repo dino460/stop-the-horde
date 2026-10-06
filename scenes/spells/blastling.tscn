@@ -1,0 +1,96 @@
+[gd_scene format=3 uid="uid://b2d874dq55jbl"]
+
+[ext_resource type="Script" uid="uid://dp4agyufnn7lw" path="res://scripts/spells/blastling.gd" id="1_f2ihx"]
+[ext_resource type="Texture2D" uid="uid://dgk2m1lyi0h4n" path="res://assets/Super Pixel Effects Gigapack (Free Version)/spritesheet/Splatters/directional_splatter_003/directional_splatter_003_large_red/spritesheet.png" id="2_f2ihx"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ykln0"]
+atlas = ExtResource("2_f2ihx")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xlw33"]
+atlas = ExtResource("2_f2ihx")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_blo7c"]
+atlas = ExtResource("2_f2ihx")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2s0rj"]
+atlas = ExtResource("2_f2ihx")
+region = Rect2(144, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gc3tw"]
+atlas = ExtResource("2_f2ihx")
+region = Rect2(192, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2wawk"]
+atlas = ExtResource("2_f2ihx")
+region = Rect2(0, 48, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qpm4h"]
+atlas = ExtResource("2_f2ihx")
+region = Rect2(48, 48, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6yb3m"]
+atlas = ExtResource("2_f2ihx")
+region = Rect2(96, 48, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6yb3m"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ykln0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xlw33")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_blo7c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2s0rj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gc3tw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2wawk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qpm4h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6yb3m")
+}],
+"loop": 0,
+"name": &"default",
+"speed": 24.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5rdkw"]
+radius = 11.0
+height = 42.0
+
+[node name="Blastling" type="Node2D" unique_id=1183879247]
+script = ExtResource("1_f2ihx")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=795670622]
+z_index = 10
+y_sort_enabled = true
+texture_filter = 1
+rotation = -0.7853982
+sprite_frames = SubResource("SpriteFrames_6yb3m")
+autoplay = "default"
+frame = 7
+frame_progress = 1.0
+speed_scale = 0.5
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1292810073]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=892083182]
+z_index = 10
+y_sort_enabled = true
+position = Vector2(0, 8)
+shape = SubResource("CapsuleShape2D_5rdkw")
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

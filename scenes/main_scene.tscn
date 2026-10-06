@@ -1,14 +1,22 @@
 [gd_scene format=3 uid="uid://caduyciudveim"]
 
+[ext_resource type="Script" uid="uid://dame6sovmeych" path="res://scripts/out_of_bounds_kill_box.gd" id="1_c16ls"]
 [ext_resource type="Script" uid="uid://cvudpj3mo2jlk" path="res://scripts/player/player_controller.gd" id="1_pw63i"]
 [ext_resource type="Script" uid="uid://bs60uqnkr07ds" path="res://scripts/player/input_handler.gd" id="2_7ykc4"]
-[ext_resource type="Resource" uid="uid://iekvu611xiov" path="res://scripts/player/classes/fighter_class.tres" id="2_pu3yx"]
+[ext_resource type="Script" uid="uid://7m0a3w8l7xmj" path="res://scripts/camera_controller.gd" id="2_e1cbu"]
+[ext_resource type="Script" uid="uid://rx2jqug0olfh" path="res://scripts/player/classes/mage_class.gd" id="3_7ykc4"]
+[ext_resource type="PackedScene" uid="uid://qi4visyqv643" path="res://scenes/spells/fireball.tscn" id="4_gubc5"]
+[ext_resource type="PackedScene" uid="uid://dc3fut2dphf1" path="res://scenes/spells/lightning.tscn" id="4_rt2n2"]
+[ext_resource type="PackedScene" uid="uid://enqujsytkcap" path="res://scenes/spells/crimson_blast.tscn" id="5_18nlu"]
+[ext_resource type="PackedScene" uid="uid://cokvh1e5efx74" path="res://scenes/spells/quantum_super_nova.tscn" id="5_c1pb6"]
+[ext_resource type="Texture2D" uid="uid://cuqc7v4g6lfol" path="res://assets/Super Pixel Effects Gigapack (Free Version)/spritesheet/Sci-fi/scifi_muzzle_flash_001/scifi_muzzle_flash_001_large_yellow/spritesheet.png" id="8_18nlu"]
+[ext_resource type="AudioStream" uid="uid://03pm6ibgun1v" path="res://assets/sfx/attack.wav" id="9_6wevv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dq28c"]
 size = Vector2(344, 20)
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_und3l"]
-load_path = "res://.godot/imported/images.jpg-64ec549cd063d13cdb90b2059d913e51.ctex"
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rt2n2"]
+size = Vector2(1542, 989.5)
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_as0w0"]
 size = Vector2(24, 24)
@@ -16,37 +24,100 @@ size = Vector2(24, 24)
 [sub_resource type="CircleShape2D" id="CircleShape2D_dq28c"]
 radius = 24.0
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_c1pb6"]
+atlas = ExtResource("8_18nlu")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6wevv"]
+atlas = ExtResource("8_18nlu")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e1cbu"]
+atlas = ExtResource("8_18nlu")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mngbo"]
+atlas = ExtResource("8_18nlu")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4w45t"]
+atlas = ExtResource("8_18nlu")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r6p65"]
+atlas = ExtResource("8_18nlu")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_si52b"]
+atlas = ExtResource("8_18nlu")
+region = Rect2(64, 32, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7hwx4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c1pb6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6wevv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e1cbu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mngbo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4w45t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r6p65")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_si52b")
+}],
+"loop": 0,
+"name": &"attack",
+"speed": 24.0
+}]
+
 [node name="MainScene" type="Node2D" unique_id=107215826]
 
 [node name="WorldEdges" type="Node" parent="." unique_id=406298809]
 
 [node name="TopSceneBarrier" type="StaticBody2D" parent="WorldEdges" unique_id=245955817]
-position = Vector2(-504, -322)
+position = Vector2(-504, -269)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WorldEdges/TopSceneBarrier" unique_id=2023216525]
 position = Vector2(90, 0)
 shape = SubResource("RectangleShape2D_dq28c")
 
 [node name="BottomSceneBarrier" type="StaticBody2D" parent="WorldEdges" unique_id=63707411]
-position = Vector2(-504, 322)
+position = Vector2(-504, 269)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WorldEdges/BottomSceneBarrier" unique_id=1261376223]
 position = Vector2(90, 0)
 shape = SubResource("RectangleShape2D_dq28c")
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=687493142]
+[node name="OutOfBoundsKillBox" type="Area2D" parent="WorldEdges" unique_id=1679859566]
+script = ExtResource("1_c16ls")
 
-[node name="Background" type="Sprite2D" parent="." unique_id=1035549497]
-scale = Vector2(1.9298507, 1.9298507)
-texture = SubResource("CompressedTexture2D_und3l")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldEdges/OutOfBoundsKillBox" unique_id=1062883042]
+shape = SubResource("RectangleShape2D_rt2n2")
 
-[node name="Player" type="CharacterBody2D" parent="." unique_id=1340836215 node_paths=PackedStringArray("input_handler")]
-position = Vector2(-494, -7)
+[node name="Camera2D" type="Camera2D" parent="." unique_id=687493142 node_paths=PackedStringArray("camera")]
+zoom = Vector2(1.2, 1.2)
+script = ExtResource("2_e1cbu")
+camera = NodePath(".")
+
+[node name="Player" type="CharacterBody2D" parent="." unique_id=1340836215 node_paths=PackedStringArray("input_handler", "player_class")]
+z_index = 20
+position = Vector2(-395, -7)
 motion_mode = 1
 script = ExtResource("1_pw63i")
 input_handler = NodePath("InputHandler")
-player_class = ExtResource("2_pu3yx")
-movement_speed = 10.0
+player_class = NodePath("Node2D/MageClass")
+min_speed = 100.0
 
 [node name="Sprite2D" type="Sprite2D" parent="Player" unique_id=1673050855]
 texture = SubResource("PlaceholderTexture2D_as0w0")
@@ -57,6 +128,45 @@ shape = SubResource("CircleShape2D_dq28c")
 [node name="InputHandler" type="Node" parent="Player" unique_id=217565153]
 script = ExtResource("2_7ykc4")
 
+[node name="Node2D" type="Node2D" parent="Player" unique_id=66318654]
+
+[node name="MageClass" type="Node2D" parent="Player/Node2D" unique_id=1784938457 node_paths=PackedStringArray("audio_player", "camera_shake", "animator")]
+z_index = 20
+script = ExtResource("3_7ykc4")
+audio_player = NodePath("AudioStreamPlayer2D")
+camera_shake = NodePath("../../../Camera2D")
+nova = ExtResource("5_c1pb6")
+blast = ExtResource("5_18nlu")
+lightning = ExtResource("4_rt2n2")
+lightning_spread = 4
+lightning_spread_recursion = 2
+lightning_spread_range = 50.0
+fireball = ExtResource("4_gubc5")
+fireball_speed = 300.0
+max_shot_angle = 15.0
+player_class_name = "MAGE"
+base_attack_speed = 10.0
+base_attack_damage = 10.0
+base_max_health = 10.0
+animator = NodePath("AnimatedSprite2D")
+has_skill = Array[bool]([true, true, true, true])
+metadata/_custom_type_script = "uid://rx2jqug0olfh"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Player/Node2D/MageClass" unique_id=1440048000]
+position = Vector2(30, 0)
+stream = ExtResource("9_6wevv")
+volume_db = -2.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player/Node2D/MageClass" unique_id=2033769360]
+z_index = 20
+texture_filter = 1
+position = Vector2(30, 0)
+sprite_frames = SubResource("SpriteFrames_7hwx4")
+animation = &"attack"
+frame_progress = 1.0
+
+[connection signal="area_exited" from="WorldEdges/OutOfBoundsKillBox" to="WorldEdges/OutOfBoundsKillBox" method="_on_area_exited"]
+[connection signal="body_exited" from="WorldEdges/OutOfBoundsKillBox" to="WorldEdges/OutOfBoundsKillBox" method="_on_body_exited"]
 [connection signal="attack_pressed" from="Player/InputHandler" to="Player" method="_on_attack_pressed"]
 [connection signal="skill_1_pressed" from="Player/InputHandler" to="Player" method="_on_skill_1_pressed"]
 [connection signal="skill_2_pressed" from="Player/InputHandler" to="Player" method="_on_skill_2_pressed"]

@@ -11,19 +11,19 @@ signal skill_4_pressed
 
 
 func _process(_delta: float) -> void:
-	if Input.is_action_just_pressed("attack"):
+	if Input.is_action_pressed("attack"):
 		attack_pressed.emit()
 
-	if Input.is_action_just_pressed("skill_1"):
+	if Input.is_action_pressed("skill_1"):
 		skill_1_pressed.emit()
 
-	if Input.is_action_just_pressed("skill_2"):
+	if Input.is_action_pressed("skill_2"):
 		skill_2_pressed.emit()
 
-	if Input.is_action_just_pressed("skill_3"):
+	if Input.is_action_pressed("skill_3"):
 		skill_3_pressed.emit()
 
-	if Input.is_action_just_pressed("skill_4"):
+	if Input.is_action_pressed("skill_4"):
 		skill_4_pressed.emit()
 
 

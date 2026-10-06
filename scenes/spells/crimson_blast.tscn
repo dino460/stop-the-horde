@@ -1,0 +1,118 @@
+[gd_scene format=3 uid="uid://enqujsytkcap"]
+
+[ext_resource type="Script" uid="uid://dy0l8il836a1a" path="res://scripts/spells/crimson_blast.gd" id="1_fjdo0"]
+[ext_resource type="Texture2D" uid="uid://boyqlluk1egv6" path="res://assets/Super Pixel Effects Gigapack (Free Version)/spritesheet/Splatters/burst_splatter_001/burst_splatter_001_large_red/spritesheet.png" id="1_s28u0"]
+[ext_resource type="PackedScene" uid="uid://b2d874dq55jbl" path="res://scenes/spells/blastling.tscn" id="2_ty8ao"]
+[ext_resource type="AudioStream" uid="uid://dk330gjjjnlcy" path="res://assets/sfx/crimson.wav" id="4_vpgjy"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fjdo0"]
+atlas = ExtResource("1_s28u0")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ty8ao"]
+atlas = ExtResource("1_s28u0")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vpgjy"]
+atlas = ExtResource("1_s28u0")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u1ddj"]
+atlas = ExtResource("1_s28u0")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6gxgf"]
+atlas = ExtResource("1_s28u0")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ajewj"]
+atlas = ExtResource("1_s28u0")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x37im"]
+atlas = ExtResource("1_s28u0")
+region = Rect2(384, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mow80"]
+atlas = ExtResource("1_s28u0")
+region = Rect2(448, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7rrab"]
+atlas = ExtResource("1_s28u0")
+region = Rect2(512, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gv5qf"]
+atlas = ExtResource("1_s28u0")
+region = Rect2(576, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vpgjy"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fjdo0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ty8ao")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vpgjy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u1ddj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6gxgf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ajewj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x37im")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mow80")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7rrab")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gv5qf")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": 0,
+"name": &"default",
+"speed": 24.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6gxgf"]
+radius = 30.0
+
+[node name="Crimson Blast" type="Node2D" unique_id=523918797 node_paths=PackedStringArray("audio_player")]
+scale = Vector2(1.5, 1.5)
+script = ExtResource("1_fjdo0")
+blastling = ExtResource("2_ty8ao")
+audio_player = NodePath("AudioStreamPlayer2D")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=365501548]
+z_index = 10
+y_sort_enabled = true
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_vpgjy")
+autoplay = "default"
+frame = 10
+frame_progress = 1.0
+speed_scale = 0.5
+
+[node name="Area2D" type="Area2D" parent="." unique_id=777908309]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1621304852]
+z_index = 10
+y_sort_enabled = true
+shape = SubResource("CircleShape2D_6gxgf")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=2101172619]
+stream = ExtResource("4_vpgjy")
+volume_db = -2.0
+autoplay = true

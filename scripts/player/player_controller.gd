@@ -11,13 +11,17 @@ extends CharacterBody2D
 var attack_cooldown_timer  : Timer
 var skills_cooldown_timers : Array[Timer]
 
+var current_health : float = 0.0
 
 @export_group("Movement")
-@export_range(1.0, 50.0, 0.1) var movement_speed : float = 5.0
+@export var max_speed : float = 250.0
+@export var min_speed : float = 250.0
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	current_health = player_class.base_max_health
+
 	attack_cooldown_timer = Timer.new()
 	attack_cooldown_timer.one_shot = true
 	attack_cooldown_timer.autostart = false
@@ -26,13 +30,15 @@ func _ready() -> void:
 	attack_cooldown_timer.start()
 
 	skills_cooldown_timers.resize(4)
-	var i = 1
-	while i < 0:
+	var i = 0
+	while i < 4:
 		skills_cooldown_timers[i] = Timer.new()
 		skills_cooldown_timers[i].one_shot = true
 		skills_cooldown_timers[i].autostart = false
 		skills_cooldown_timers[i].wait_time = player_class.skills_base_cooldown_time[i]
 		add_child(skills_cooldown_timers[i])
+		skills_cooldown_timers[i].start()
+		i += 1
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -41,28 +47,41 @@ func _process(delta: float) -> void:
 
 
 func _physics_process(delta: float) -> void:
-	var move_direction : Vector2 = Vector2(0.0, input_handler.get_movement_this_frame()) * movement_speed
+	var mouse_position : Vector2 = get_global_mouse_position()
+	var corrected_mouse_position : Vector2 = Vector2(self.global_position.x, mouse_position.y)
+	var move_direction : Vector2 = self.global_position.direction_to(corrected_mouse_position)
 
-	self.move_and_collide(move_direction)
+	# var move_direction : Vector2 = Vector2(0.0, input_handler.get_movement_this_frame()) * max_speed
+	var distance_to_target : float = self.position.distance_squared_to(corrected_mouse_position)
+	if distance_to_target > 5.0:
+		self.move_and_collide(move_direction * max(max_speed * (distance_to_target / get_viewport().size.y), min_speed) * delta)
 
 
 func _on_skill_4_pressed() -> void:
-	print("skill 4")
+	if skills_cooldown_timers[3].time_left == 0.0:
+		skills_cooldown_timers[3].start()
+		player_class.do_skill_4()
 
 
 func _on_skill_3_pressed() -> void:
-	print("skill 3")
+	if skills_cooldown_timers[2].time_left == 0.0:
+		skills_cooldown_timers[2].start()
+		player_class.do_skill_3()
 
 
 func _on_skill_2_pressed() -> void:
-	print("skill 2")
+	if skills_cooldown_timers[1].time_left == 0.0:
+		skills_cooldown_timers[1].start()
+		player_class.do_skill_2()
 
 
 func _on_skill_1_pressed() -> void:
-	print("skill 1")
+	if skills_cooldown_timers[0].time_left == 0.0:
+		skills_cooldown_timers[0].start()
+		player_class.do_skill_1()
 
 
 func _on_attack_pressed() -> void:
 	if attack_cooldown_timer.time_left == 0.0:
 		attack_cooldown_timer.start()
-		print("attack as ", player_class.player_class_name)
+		player_class.attack()
