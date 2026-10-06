@@ -4,18 +4,25 @@ class_name PlayerClass
 
 @export var player_class_name : String = "base class"
 
-@export var available_skills : Array
+@export var held_upgrades : Array[Upgrade] = []
 
 @export var base_attack_speed : float = 0.0
 @export var base_attack_damage : float = 0.0
 
-@export var base_max_health   : float = 0.0
+@export var max_health   : float = 0.0
 
 @export var skills_base_cooldown_time : Array[float] = [1.0, 1.0, 1.0, 1.0]
 
 @export var animator : AnimatedSprite2D
 
 @export var has_skill : Array[bool] = [false, false, false, false]
+
+@export var balance_manager : BalanceManager
+
+
+func _process(delta: float) -> void:
+	if balance_manager.paused:
+		return
 
 
 func attack() -> void:
@@ -40,3 +47,6 @@ func do_skill_2() -> void:
 func do_skill_1() -> void:
 	if not has_skill[0]:
 		return
+
+func apply_upgrade(upgrade : Upgrade):
+	held_upgrades.append(upgrade)

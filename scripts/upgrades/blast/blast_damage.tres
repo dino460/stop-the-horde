@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Upgrade" format=3 uid="uid://dj0n3o4mf3gy5"]
+
+[ext_resource type="Script" uid="uid://jf70lqhce1go" path="res://scripts/upgrades/upgrade.gd" id="1_psgdy"]
+
+[resource]
+script = ExtResource("1_psgdy")
+upgrade_type = 3
+upgrade_place = "damage"
+upgrade_value = 10.0
+name = "BLAST DAMAGE UP"
+description = "Increases Blast damage"
+metadata/_custom_type_script = "uid://jf70lqhce1go"

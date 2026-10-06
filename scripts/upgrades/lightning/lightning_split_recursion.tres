@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Upgrade" format=3 uid="uid://crve3sg3vp12q"]
+
+[ext_resource type="Script" uid="uid://jf70lqhce1go" path="res://scripts/upgrades/upgrade.gd" id="1_pfc5t"]
+
+[resource]
+script = ExtResource("1_pfc5t")
+upgrade_type = 2
+upgrade_place = "split recursion"
+upgrade_value = 1.0
+name = "LIGHTNING RECURSION"
+description = "Increases lightning split recursion"
+metadata/_custom_type_script = "uid://jf70lqhce1go"

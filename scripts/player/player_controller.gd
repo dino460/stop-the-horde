@@ -20,7 +20,7 @@ var current_health : float = 0.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	current_health = player_class.base_max_health
+	current_health = player_class.max_health
 
 	attack_cooldown_timer = Timer.new()
 	attack_cooldown_timer.one_shot = true

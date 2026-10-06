@@ -81,8 +81,7 @@ texture_filter = 1
 rotation = -0.7853982
 sprite_frames = SubResource("SpriteFrames_6yb3m")
 autoplay = "default"
-frame = 7
-frame_progress = 1.0
+frame_progress = 0.9814583
 speed_scale = 0.5
 
 [node name="Area2D" type="Area2D" parent="." unique_id=1292810073]

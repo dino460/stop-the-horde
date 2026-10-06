@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Upgrade" format=3 uid="uid://oh0j1vb48pys"]
+
+[ext_resource type="Script" uid="uid://jf70lqhce1go" path="res://scripts/upgrades/upgrade.gd" id="1_mkeeb"]
+
+[resource]
+script = ExtResource("1_mkeeb")
+upgrade_type = 1
+upgrade_place = "damage"
+upgrade_value = 10.0
+name = "FIREBALL I"
+description = "Upgrades fireball"
+metadata/_custom_type_script = "uid://jf70lqhce1go"

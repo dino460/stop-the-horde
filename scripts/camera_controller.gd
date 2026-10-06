@@ -7,7 +7,7 @@ class_name CameraShakeController
 @export var NOISE_SHAKE_SPEED: float = 30.0
 # Noise returns values in the range (-1, 1)
 # So this is how much to multiply the returned value by
-@export var NOISE_SHAKE_STRENGTH: float = 60.0
+@export var MAX_NOISE_SHAKE_STRENGTH: float = 60.0
 # Multiplier for lerping the shake strength to zero
 @export var SHAKE_DECAY_RATE: float = 5.0
 
@@ -21,6 +21,8 @@ var noise_i: float = 0.0
 
 var shake_strength: float = 0.0
 
+var shake_decay: float = 0.0
+
 func _ready() -> void:
 	rand.randomize()
 	# Randomize the generated noise
@@ -28,8 +30,8 @@ func _ready() -> void:
 	# Period affects how quickly the noise changes values
 	noise.frequency = 2
 
-func apply_noise_shake() -> void:
-	shake_strength = NOISE_SHAKE_STRENGTH
+func apply_noise_shake(strength : float = 10.0) -> void:
+	shake_strength = min(MAX_NOISE_SHAKE_STRENGTH, strength)
 
 func _process(delta: float) -> void:
 	# Fade out the intensity over time

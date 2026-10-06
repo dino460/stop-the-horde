@@ -87,7 +87,7 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6gxgf"]
-radius = 30.0
+radius = 15.69147
 
 [node name="Crimson Blast" type="Node2D" unique_id=523918797 node_paths=PackedStringArray("audio_player")]
 scale = Vector2(1.5, 1.5)
@@ -116,3 +116,5 @@ shape = SubResource("CircleShape2D_6gxgf")
 stream = ExtResource("4_vpgjy")
 volume_db = -2.0
 autoplay = true
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

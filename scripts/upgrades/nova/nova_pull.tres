@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Upgrade" format=3 uid="uid://cl3thj1n10v4p"]
+
+[ext_resource type="Script" uid="uid://jf70lqhce1go" path="res://scripts/upgrades/upgrade.gd" id="1_5su5p"]
+
+[resource]
+script = ExtResource("1_5su5p")
+upgrade_type = 4
+upgrade_place = "pull"
+upgrade_value = 10.0
+name = "NOVA PULL UP"
+description = "Increases nova pull strength"
+metadata/_custom_type_script = "uid://jf70lqhce1go"

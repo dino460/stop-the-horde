@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Upgrade" format=3 uid="uid://fwn5e3wttgyi"]
+
+[ext_resource type="Script" uid="uid://jf70lqhce1go" path="res://scripts/upgrades/upgrade.gd" id="1_hb002"]
+
+[resource]
+script = ExtResource("1_hb002")
+upgrade_type = 3
+upgrade_place = "unlock"
+name = "CRIMSON BLAST"
+description = "Unlocks Crimson Blast spell"
+metadata/_custom_type_script = "uid://jf70lqhce1go"

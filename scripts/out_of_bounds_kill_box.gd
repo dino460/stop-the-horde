@@ -1,12 +1,14 @@
 extends Area2D
 
 
+func _on_area_entered(area: Area2D) -> void:
+	var spell : Spell = area.get_parent() as Spell
 
-func _on_area_exited(area: Area2D) -> void:
-	area.get_parent().queue_free()
-	# area.owner.queue_free()
+	if spell != null:
+		spell.queue_free()
 
 
+	var enemy : Enemy = area.get_parent() as Enemy
 
-func _on_body_exited(body: Node2D) -> void:
-	body.queue_free()
+	if self.global_position.x < 0.0 and enemy != null:
+		enemy.queue_free()

@@ -1,0 +1,107 @@
+[gd_scene format=3 uid="uid://dpo28u1dgaklj"]
+
+[ext_resource type="Script" uid="uid://dsmwg80uucm68" path="res://scripts/ui/upgrade_choice.gd" id="1_d3dag"]
+[ext_resource type="Texture2D" uid="uid://df3trmbebqg1i" path="res://assets/skills_spritesheet.png" id="2_4i4xc"]
+[ext_resource type="FontFile" uid="uid://h4q7ijfn3bpa" path="res://assets/m5x7.ttf" id="3_5sr3c"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_14b3q"]
+size = Vector2(250, 400)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hkefc"]
+atlas = ExtResource("2_4i4xc")
+region = Rect2(0.8556309, 0.8106241, 14.256086, 14.303376)
+
+[sub_resource type="LabelSettings" id="LabelSettings_18nlu"]
+font = ExtResource("3_5sr3c")
+font_size = 32
+
+[sub_resource type="LabelSettings" id="LabelSettings_c1pb6"]
+font = ExtResource("3_5sr3c")
+font_size = 24
+
+[sub_resource type="LabelSettings" id="LabelSettings_hkefc"]
+font = ExtResource("3_5sr3c")
+
+[node name="Choice" type="Node2D" unique_id=901009003 node_paths=PackedStringArray("title_lable", "type_lable", "description_lable", "icon")]
+script = ExtResource("1_d3dag")
+title_lable = NodePath("Sprite2D/UpgradeName")
+type_lable = NodePath("Sprite2D/Type")
+description_lable = NodePath("Sprite2D/UpgradeDescription")
+icon = NodePath("Sprite2D/Icon")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1225399408]
+texture = SubResource("PlaceholderTexture2D_14b3q")
+
+[node name="Icon" type="Sprite2D" parent="Sprite2D" unique_id=1613797150]
+texture_filter = 1
+position = Vector2(0, -93)
+scale = Vector2(5.34, 5.34)
+texture = SubResource("AtlasTexture_hkefc")
+
+[node name="UpgradeName" type="Label" parent="Sprite2D" unique_id=217678308]
+texture_filter = 1
+custom_minimum_size = Vector2(200, 35)
+custom_maximum_size = Vector2(245, 60)
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -198.45999
+offset_top = -200.0
+offset_right = -51.54
+offset_bottom = -174.0
+grow_horizontal = 2
+text = "LIGHTNING II"
+label_settings = SubResource("LabelSettings_18nlu")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Type" type="Label" parent="Sprite2D" unique_id=1186408041]
+texture_filter = 1
+custom_minimum_size = Vector2(100, 35)
+custom_maximum_size = Vector2(120, 60)
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = -120.0
+offset_top = -236.5
+offset_right = 80.0
+offset_bottom = -201.5
+grow_vertical = 2
+text = "LIGHTNING"
+label_settings = SubResource("LabelSettings_c1pb6")
+vertical_alignment = 1
+
+[node name="UpgradeDescription" type="Label" parent="Sprite2D" unique_id=1826326420]
+texture_filter = 1
+custom_minimum_size = Vector2(0, 200)
+custom_maximum_size = Vector2(238.29, 200)
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -249.92749
+offset_top = -373.0
+offset_right = -0.072502136
+offset_bottom = -200.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "\"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\""
+label_settings = SubResource("LabelSettings_hkefc")
+autowrap_mode = 2
+
+[node name="Button" type="Button" parent="Sprite2D" unique_id=1778012926]
+texture_filter = 1
+custom_minimum_size = Vector2(250, 400)
+custom_maximum_size = Vector2(250, 400)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -125.0
+offset_top = -200.0
+offset_right = -125.0
+offset_bottom = -200.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[connection signal="pressed" from="Sprite2D/Button" to="." method="_on_button_pressed"]

@@ -178,12 +178,11 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0hkmn"]
-radius = 30.0
+radius = 16.703665
 
 [node name="Lighning" type="Node2D" unique_id=518565983 node_paths=PackedStringArray("audio_player")]
 scale = Vector2(0.9, 0.9)
 script = ExtResource("1_xfalf")
-lightning = null
 spread = 5
 audio_player = NodePath("AudioStreamPlayer2D")
 
@@ -212,7 +211,7 @@ speed_scale = 0.66
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1939041273]
 z_index = 10
 y_sort_enabled = true
-position = Vector2(0, 5)
+position = Vector2(0, -4.444444)
 shape = SubResource("CircleShape2D_0hkmn")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=999899831]

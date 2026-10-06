@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Upgrade" format=3 uid="uid://36k6heciio4u"]
+
+[ext_resource type="Script" uid="uid://jf70lqhce1go" path="res://scripts/upgrades/upgrade.gd" id="1_ie6p7"]
+
+[resource]
+script = ExtResource("1_ie6p7")
+upgrade_type = 2
+upgrade_place = "unlock"
+name = "LIGHTNING"
+description = "Unlocks lighning spell"
+metadata/_custom_type_script = "uid://jf70lqhce1go"
